@@ -1,0 +1,105 @@
+﻿@model Employee_timesheet.Models.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@*<h1>Details</h1>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Project)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Project.ProjectId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.TaskId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+*@
+
+
+
+
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .blockquote-custom {
+        position: relative;
+        font-size: 1.1rem;
+    }
+
+    .blockquote-custom-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -40px;
+        left: 19px;
+    }
+</style>
+
+
+<div>
+    <h4>Timesheet Details</h4>
+    <hr />
+
+</div>
+
+
+
+
+<div class="container">
+    <section class="mx-auto my-5" style="max-width: 43rem;">
+
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote blockquote-custom bg-white px-3 pt-4">
+                    <div class="blockquote-custom-icon bg-info shadow-1-strong">
+                        <i class="fa fa-quote-left text-white"></i>
+                    </div>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @*@Html.DisplayNameFor(model => model.TaskName)*@Task Name
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.TaskName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Project)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Project.ProjectId)
+                        </dd>
+                    </dl>
+                    <footer class=" pt-4 mt-4 border-top">
+                        <a asp-action="Edit" asp-route-id="@Model?.TaskId" class="text-primary" style="font-size:30px"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="Index" class="text-warning" style="font-size:30px;padding-left:10px;"><i class="fa-solid fa-backward"></i></a>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+

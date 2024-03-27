@@ -1,0 +1,131 @@
+﻿@inject CompanyTimesheetContext DbContext
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Employee_timesheet</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Employee_timesheet.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="~/css/LoginStyle.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://mb.cision.com/Public/18959/3488514/8b56ffb305d960f5_org.png" style="height:30px;width:170px" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var userId = User.Identity.Name;
+                            var isEmployee = userId.StartsWith("EMP");
+                            var isManager = userId.StartsWith("MGR");
+
+                            var employeeName = "";
+                            if (isEmployee)
+                            {
+                                // Retrieve the employee name from the database
+                                var employee = DbContext.Employees.FirstOrDefault(e => e.EmployeeId == userId);
+                                if (employee != null)
+                                {
+                                    employeeName = employee.EmployeeName;
+                                }
+                            }
+                            if (isManager)
+                            {
+                                // Retrieve the employee name from the database
+                                var manager = DbContext.Managers.FirstOrDefault(e => e.ManagerId == userId);
+                                if (manager != null)
+                                {
+                                    employeeName = manager.ManagerName;
+                                }
+                             
+                            }
+
+                            @if (isEmployee)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:20px;"><i class="fa-solid fa-house" style="color:rgb(40,0,113)"></i></a>
+                                </li>
+                                <li style="margin-left:950px;cursor:pointer">
+                                    <div id="profileImage" onclick="redirectToProfile()">@employeeName.Substring(0, 1)</div>
+                                </li>
+                                <li class="nav-item">`
+                                    <a id="firstName" class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hello! <b>@employeeName</b></a>
+                                </li>
+                            }
+                            @if (isManager)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:20px;"><i class="fa-solid fa-house" style="color:rgb(40,0,113)"></i></a>
+                                </li>
+                                <li style="margin-left:950px;cursor:pointer">
+                                    <div id="profileImage" onclick="redirectToMgrProfile()">@employeeName.Substring(0, 1)</div>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="firstName" class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hello! <b>@employeeName</b> </a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-info" asp-area="" asp-controller="Home" asp-action="Logout"><i class="fa-solid fa-right-from-bracket"></i> </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3" style="overflow:hidden">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function () {
+            var firstName = $('#firstName').text();
+            var intials = $('#firstName').text().charAt(7);
+            var profileImage = $('#profileImage').text(intials);
+        });
+        function redirectToProfile() {
+            window.location.href = '@Url.Action("Profile","Home")'; // Replace "Profile" and "Home" with your desired action and controller
+        }
+        function redirectToMgrProfile() {
+            window.location.href = '@Url.Action("ManagerProfile","Home")'; // Replace "ManagerProfile" and "Home" with your desired action and controller
+        }
+    </script>
+    <style>
+        #profileImage {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #512DA8;
+            font-size: 25px;
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            margin: 1px 0;
+        }
+    </style>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
+</body>
+</html>

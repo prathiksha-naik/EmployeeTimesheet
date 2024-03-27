@@ -1,0 +1,426 @@
+﻿
+@model IEnumerable<Employee_timesheet.Models.Timesheet>
+
+@inject CompanyTimesheetContext dbContext;
+
+@{
+
+    ViewData["Title"] = "Index";
+
+}
+
+
+
+<h3>Timesheet Details</h3>
+
+
+
+<p>
+
+
+    <button onclick="redirectToCreateTimesheets()" type="button" class="btn btn-primary" style="background-color: #002d72;margin-left:10px;margin-top:10px;float:left">Add New</button>
+
+
+
+</p>
+
+
+
+
+
+
+
+<style>
+
+    html,
+    body,
+    .intro {
+        height: 100%;
+    }
+
+
+
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+
+
+    thead th {
+        color: #fff;
+    }
+
+
+
+    .card {
+        border-radius: .5rem;
+    }
+
+
+
+    .table-scroll {
+        border-radius: .5rem;
+    }
+
+
+
+        .table-scroll table thead th {
+            font-size: 1.25rem;
+        }
+
+
+
+    thead {
+        top: 0;
+        position: sticky;
+    }
+</style>
+
+
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="input-group mb-3">
+
+            <input type="text" id="searchInput" class="form-control" placeholder="Search ">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<section class="intro" style="margin-top:30px" id="table">
+
+    <div class="bg-image h-100">
+
+        <div class="mask d-flex align-items-center h-100">
+
+            <div class="container">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-12">
+
+                        <div class="card">
+
+                            <div class="card-body p-0">
+
+                                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px;">
+
+                                    <table class="table table-striped mb-0">
+
+                                        <thead style="background-color: #002d72;">
+
+                                            <tr>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Date)
+
+                                                </th>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Type)
+
+                                                </th>
+
+                                                <th>
+
+                                                    @*@Html.DisplayNameFor(model => model.TotalHoursWorked)*@
+
+                                                    Working Hours
+
+                                                </th>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Status)
+
+                                                </th>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Employee)
+
+                                                </th>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Project)
+
+                                                </th>
+
+                                                <th>
+
+                                                    @Html.DisplayNameFor(model => model.Task)
+
+                                                </th>
+
+
+                                                <th></th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+
+                                            @{
+
+                                                var loggedInEmployeeUsername = User.Identity.Name;
+
+                                                var timesheets = Model.Where(t => t.Employee.EmployeeId == loggedInEmployeeUsername).OrderByDescending(t => t.Date);
+
+                                            }
+
+                                            @foreach (var item in timesheets)
+
+                                            {
+
+                                                <tr id="timesheetRow">
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.Date)
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.Type)
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.TotalHoursWorked)
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @*@Html.DisplayFor(modelItem => item.Status)*@
+
+                                                        @if (item.Status == true)
+
+                                                        {
+
+                                                            <span class="text-success">Approved</span>
+
+                                                        }
+
+                                                        else if (item.Status == false)
+
+                                                        {
+
+                                                            <span class="text-danger">Rejected</span>
+
+                                                        }
+
+                                                        else
+
+                                                        {
+
+                                                            <span class="text-info">Pending</span>
+
+                                                        }
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.Project.ProjectName)
+
+                                                    </td>
+
+                                                    <td>
+
+                                                        @Html.DisplayFor(modelItem => item.Task.TaskName)
+
+                                                    </td>
+
+
+                                                    <td>
+
+                                                        @if (item.Status == true)
+
+                                                        {
+
+                                                            <a asp-action="Details" asp-route-id="@item.TimesheetId" class="text-info"> <i class="fa-sharp fa-solid fa-circle-info"></i> </a>
+
+                                                        }
+
+                                                        else if (item.Status == false)
+
+                                                        {
+
+                                                            <a asp-action="Details" asp-route-id="@item.TimesheetId" class="text-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
+
+                                                            <a asp-action="Edit" asp-route-id="@item.TimesheetId" class="text-warning" style="padding-left:5px"><i class="fa-solid fa-pen-to-square"></i> </a>
+
+                                                        }
+
+                                                        else
+
+                                                        {
+
+                                                            <a asp-action="Details" asp-route-id="@item.TimesheetId" class="text-info"> <i class="fa-sharp fa-solid fa-circle-info"></i></a>
+
+                                                            <a asp-action="Edit" asp-route-id="@item.TimesheetId" class="text-warning" style="padding-left:5px"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                                            <a asp-action="Delete" asp-route-id="@item.TimesheetId" class="text-danger" style="padding-left:5px"> <i class="fa-solid fa-trash "></i></a>
+
+                                                        }
+
+
+
+                                                    </td>
+
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<div class="text-center p-4" id="notFound" style="display:none;">
+
+    <h4>Sorry! No results found :(</h4>
+
+    <img src="https://cdn.dribbble.com/users/665029/screenshots/16162764/plane_2.gif" height="400px" />
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        function redirectToCreateTimesheets() {
+
+            window.location.href = '@Url.Action("Create","Timesheets")';
+
+        }
+
+
+
+        $(document).ready(function () {
+
+            // Function to filter the table rows based on search inputs
+
+            function filterTable() {
+
+                var searchText = $('#searchInput').val().toLowerCase();
+
+                var foundResults = false;
+
+
+
+                var $notFoundMessage = $('#notFound');
+
+                var $table = $('#table');
+
+                $table.show();
+
+                $notFoundMessage.hide();
+
+                // Loop through each table row and hide/show based on search input
+
+                $('tbody tr').each(function () {
+
+                    var date = $(this).find('td:eq(0)').text().toLowerCase();
+
+                    var type = $(this).find('td:eq(1)').text().toLowerCase();
+
+                    var workinghours = $(this).find('td:eq(2)').text().toLowerCase();
+
+                    var status = $(this).find('td:eq(3)').text().toLowerCase();
+
+                    var project = $(this).find('td:eq(5)').text().toLowerCase();
+
+                    var task = $(this).find('td:eq(6)').text().toLowerCase();
+
+
+
+                    if (date.includes(searchText) || status.includes(searchText) || type.includes(searchText) || workinghours.includes(searchText)
+
+                        || project.includes(searchText) || task.includes(searchText)) {
+
+                        $(this).show();
+
+                        foundResults = true;
+
+
+
+                    } else {
+
+                        $(this).hide();
+
+
+
+                    }
+
+                });
+
+                if (!foundResults) {
+
+                    $table.hide();
+
+                    $notFoundMessage.show();
+
+                }
+
+            }
+
+
+
+            // Trigger the filterTable function on search input change
+
+            $('#searchInput').on('input', filterTable);
+
+        });
+
+    </script>
+
+    }

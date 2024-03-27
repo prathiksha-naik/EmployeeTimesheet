@@ -1,0 +1,210 @@
+﻿@model IEnumerable<Employee_timesheet.Models.Timesheet>
+@inject CompanyTimesheetContext dbContext;
+
+@{
+    ViewData["Title"] = "ApprovalIndex";
+}
+
+<h3>Requests</h3>
+
+
+<style>
+    html,
+    body,
+    .intro {
+        height: 100%;
+    }
+
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    thead th {
+        color: #fff;
+    }
+
+    .card {
+        border-radius: .5rem;
+    }
+
+    .table-scroll {
+        border-radius: .5rem;
+    }
+
+        .table-scroll table thead th {
+            font-size: 1.25rem;
+        }
+
+    thead {
+        top: 0;
+        position: sticky;
+    }
+</style>
+
+
+
+<section class="intro" style="margin-top:30px">
+    <div class="bg-image h-100">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                @if (!Model.Any(t => t.Status == null))
+                                {
+                                    <div class="text-center p-4">
+                                        <h4>No pending requests found..!</h4>
+                                        <img src="https://s9.gifyu.com/images/101961-non-data-found.gif" height="400px" />
+
+                                    </div>
+                                }
+                                else{
+                                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px;">
+                                    <table class="table table-striped mb-0">
+                                        <thead style="background-color: #002d72;">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Date)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Type)
+                                                </th>
+                                                <th>
+                                                    Working Hours
+                                                    @*@Html.DisplayNameFor(model => model.TotalHoursWorked)*@
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Status)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Employee)
+                                                </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Project)
+                                                    </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Task)
+                                                </th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                var loggedInManagerUsername = User.Identity.Name;
+                                                    var timesheets = Model.Where(t => t.Employee.ManagerId == loggedInManagerUsername && ((t.Status == null)||(t.Comments==null && t.Status==false)));
+                                            }
+                                            @foreach (var item in timesheets)
+                                            {
+                                               
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Date)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Type)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TotalHoursWorked)
+                                                        </td>
+                                                        <td>
+
+                                                            @if (item.Status == true)
+                                                            {
+                                                                <span class="text-success">Approved</span>
+                                                            }
+                                                            else if (item.Status == false)
+                                                            {
+                                                                <span class="text-danger">Rejected</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="text-info">Pending</span>
+                                                            }
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                                        </td>
+                                                       
+                                                        @{
+                                                            var project = dbContext.Projects.FirstOrDefault(p => p.ProjectId == item.Task.ProjectId);
+                                                            var projectName = project != null ? project.ProjectName : string.Empty;
+
+                                                        }
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => projectName)
+                                                        </td>
+                                                        
+                                                        <td>
+                                                                @Html.DisplayFor(modelItem => item.Task.TaskName)
+                                                        </td>
+
+
+
+                                                        @if (item.Status == null)
+                                                        {
+                                                        <td>
+                                                          
+                                                                <form asp-action="UpdateStatus" asp-route-id="@item.TimesheetId" method="post" style="float:left">
+                                                                    <input type="hidden" name="status" value="true" />
+                                                                    <button type="submit" class="btn btn-sm btn-success" >Approve</button>
+                                                                </form>
+                                                                <form asp-action="UpdateStatus" asp-route-id="@item.TimesheetId" method="post" style="margin-left:75px;">
+                                                                    <input type="hidden" name="status" value="false" />
+                                                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                                                </form>
+                                                            
+
+                                                        </td>
+                                                        }
+                                                            <td>
+                                                                @if (item.Status == true)
+                                                                {
+                                                                    @Html.HiddenFor(modelItem => item.Comments)
+
+                                                                }
+                                                                else if (item.Status == false)
+                                                                {
+                                                                    @if (!string.IsNullOrEmpty(item.Comments))
+                                                                    {
+                                                                        @Html.DisplayFor(modelItem => item.Comments)
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <form asp-action="AddComment" asp-route-id="@item.TimesheetId" method="post">
+                                                                            <div class="form-group">
+                                                                                <input type="text" name="comment" class="form-control" placeholder="Add a comment" required/>
+                                                                            </div>
+                                                                            
+                                                                            <button type="submit" class="btn btn-sm btn-info" style="margin-top:10px">Comment</button>
+                                                                        </form>
+                                                                    }
+                                                                }
+                                                            </td>
+                                                       
+                                                           
+                                                           
+                                                    </tr>
+                                                }
+
+                                          
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

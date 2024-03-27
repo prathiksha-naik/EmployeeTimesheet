@@ -1,0 +1,317 @@
+﻿@*@model Employee_timesheet.EmployeeAccessViewModel;*@
+@*@inject AccessService _accessService;*@
+@inject CompanyTimesheetContext DbContext
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!--Main Navigation-->
+<header>
+    <style>
+
+
+        body {
+            background-color: #f5f7fa;
+            background-image: url('https://img2.storyblok.com/filters:quality(80)/f/82473/3000x1764/b749baf752/eninbg.jpg')
+        }
+
+        .testimonial-card .card-up {
+            height: 120px;
+            overflow: hidden;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+        }
+
+        .aqua-gradient {
+            background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+        }
+
+        .testimonial-card .avatar {
+            width: 120px;
+            margin-top: -60px;
+            overflow: hidden;
+            border: 5px solid #fff;
+            border-radius: 50%;
+        }
+
+    </style>
+    @if (User.Identity.IsAuthenticated)
+    {
+        var userId = User.Identity.Name;
+        var isEmployee = userId.StartsWith("EMP");
+        var isManager = userId.StartsWith("MGR");
+
+        <div class="container" style="margin-left:30px;">
+            @if (isEmployee)
+            {
+                <section onclick="redirectToEmpTimesheets()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://media.tenor.com/ZZum3-7cdycAAAAC/time-money.gif" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Timesheets</h4>
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <section onclick="redirectToCal()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://cdn.icon-icons.com/icons2/17/PNG/256/googlecalendar__2218.png" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Calendar</h4>
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="holidays">
+                        <table>
+                            <tr>
+                                <th>
+                                    <div class="header">
+                                        <i class="fas fa-running"></i>
+                                        <span class="header-text">Holidays</span>
+                                    </div>
+                                </th>
+                                <th>Date</th>
+                            </tr>
+                            <tr>
+                                <td>Republic Day</td>
+                                <td>26th January</td>
+                            </tr>
+                            <tr>
+                                <td>Chandramana Ugadi</td>
+                                <td> 22nd May</td>
+                            </tr>
+                            <tr>
+                                <td>May Day</td>
+                                <td> 1st May</td>
+                            </tr>
+                            <tr>
+                                <td>Bakrid/ Eid al Adha </td>
+                                <td> 29th June</td>
+                            </tr>
+                            <tr>
+                                <td>Independence Day</td>
+                                <td> 15th August</td>
+                            </tr>
+                            <tr>
+                                <td>Ganesh Chaturthi</td>
+                                <td> 19th September</td>
+                            </tr>
+                            <tr>
+                                <td>Gandhi Jayanthi</td>
+                                <td> 2nd October</td>
+                            </tr>
+                            <tr>
+                                <td>Vijaya Dashmi</td>
+                                <td> 24th October</td>
+                            </tr>
+                            <tr>
+                                <td>Karnataka Rajyotsava</td>
+                                <td> 1st November</td>
+                            </tr>
+                            <tr>
+                                <td>Christmas Day</td>
+                                <td> 25th December</td>
+                            </tr>
+                            <!-- Rest of the table content -->
+                        </table>
+                    </div>
+
+
+                </section>
+
+                <style>
+
+
+
+                    .header {
+                        border-block-color: darkmagenta;
+                        color: black;
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                    }
+
+
+
+                        .header i {
+                            margin-right: 10px;
+                        }
+
+
+
+                    .header-text {
+                        font-weight: bold;
+                    }
+
+
+
+                    .holidays {
+                        width: 600px;
+                        /*margin: 20px auto;*/
+
+                        padding: 20px;
+                    }
+
+
+
+                    table {
+                        width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        margin-top: -25px;
+                        border-radius: 10px;
+                        background: rgb(214,178,238);
+                        background: linear-gradient(90deg, rgba(214,178,238,1) 0%, rgba(240,176,176,1) 50%, rgba(238,211,171,1) 100%);
+                    }
+
+
+
+
+
+                    td {
+                        color: black;
+                    }
+
+                    th, td {
+                        padding: 10px 20px;
+                    }
+
+                    th {
+                        background: #ff6a00;
+                        color: black;
+                    }
+
+                    tr:nth-child(even) {
+                        background: rgb(214,178,238);
+                        background: linear-gradient(90deg, rgba(214,178,238,1) 0%, rgba(240,176,176,1) 50%, rgba(238,211,171,1) 100%);
+                    }
+
+
+
+
+                    tr:not(:last-child) {
+                        border-bottom: 1px dashed grey;
+                    }
+                </style>
+
+
+
+            }
+
+            @if (isManager)
+            {
+
+                <section onclick="redirectToTimesheets()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://media.tenor.com/ZZum3-7cdycAAAAC/time-money.gif" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Timesheets</h4>
+
+                        </div>
+                    </div>
+
+                </section>
+                <section onclick="redirectToTasks()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5c9ef2f2e8ba44f99ae7edcf/1556552864323-JS95SBH7Q97MEY45NUM8/AskBot_gif.gif" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Tasks</h4>
+
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+
+                <section onclick="redirectToProjects()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5dbec7780f3dd315bb49d1c9/1588015263010-JGZJLXKO9W4PRAWU2MXH/DPB_Spinning_Logo_Loop.gif?format=1500w" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Projects</h4>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <section onclick="redirectToApprovals()" class="mx-auto my-4" style="width: 19rem; float:left;padding:10px;cursor:pointer">
+
+                    <div class="card testimonial-card mt-2 mb-3">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="avatar mx-auto white">
+                            <img src="https://www.jimphicdesigns.com/downloads/imgs-mockup/tech-creating-medical-cross-animation.gif" class="rounded-circle img-fluid"
+                                 alt="woman avatar">
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Requests</h4>
+
+                        </div>
+                    </div>
+
+                </section>
+
+
+            }
+
+
+        </div>
+
+
+    }
+
+    @section Scripts {
+        <script>
+            function redirectToTimesheets() {
+                window.location.href = '@Url.Action("ManagerIndex","Timesheets")';
+            }
+            function redirectToTasks() {
+                window.location.href = '@Url.Action("Index","Tasks")';
+            }
+            function redirectToProjects() {
+                window.location.href = '@Url.Action("Index","Projects")';
+            }
+            function redirectToApprovals() {
+                window.location.href = '@Url.Action("Approval","Timesheets")';
+            }
+            function redirectToEmpTimesheets() {
+                window.location.href = '@Url.Action("EmployeeIndex","Timesheets")';
+            }
+            function redirectToCal() {
+                window.location.href = '@Url.Action("Calender","Home")';
+            }
+        </script>
+    }
+</header>

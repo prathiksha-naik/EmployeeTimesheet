@@ -1,0 +1,15 @@
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\bin\Debug\net6.0\TimesheetModels.deps.json
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\bin\Debug\net6.0\TimesheetModels.runtimeconfig.json
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\bin\Debug\net6.0\TimesheetModels.dll
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\bin\Debug\net6.0\TimesheetModels.pdb
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.csproj.AssemblyReference.cache
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.AssemblyInfoInputs.cache
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.AssemblyInfo.cs
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.csproj.CoreCompileInputs.cache
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.dll
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\refint\TimesheetModels.dll
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.pdb
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.genruntimeconfig.cache
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\ref\TimesheetModels.dll
+C:\Users\EI13144\source\repos\Employee_Timesheet\TimesheetModels\obj\Debug\net6.0\TimesheetModels.sourcelink.json

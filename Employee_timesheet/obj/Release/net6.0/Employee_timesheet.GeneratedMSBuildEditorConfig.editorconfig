@@ -1,0 +1,169 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Employee_timesheet
+build_property.RootNamespace = Employee_timesheet
+build_property.ProjectDir = C:\Users\EI13144\Downloads\Employee_Timesheet 1 (1)\Employee_Timesheet\Employee_timesheet\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\EI13144\Downloads\Employee_Timesheet 1 (1)\Employee_Timesheet\Employee_timesheet
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Employees/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Employees/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Employees/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Employees/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Employees/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Home/Calender.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWxlbmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Home/ManagerProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYW5hZ2VyUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Home/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Login/EmployeeLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRW1wbG95ZWVMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Managers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Managers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Managers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Managers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Managers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Projects/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Projects/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Projects/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Projects/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Projects/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Tasks/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Tasks/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Tasks/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Tasks/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Tasks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/Approval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xBcHByb3ZhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/EmployeeIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xFbXBsb3llZUluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Timesheets/ManagerIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZXNoZWV0c1xNYW5hZ2VySW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EI13144/Downloads/Employee_Timesheet 1 (1)/Employee_Timesheet/Employee_timesheet/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-0dya462cvl

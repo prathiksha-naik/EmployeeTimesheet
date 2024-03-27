@@ -1,0 +1,77 @@
+﻿@model Employee_timesheet.Models.Project
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .blockquote-custom {
+        position: relative;
+        font-size: 1.1rem;
+    }
+
+    .blockquote-custom-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -40px;
+        left: 19px;
+    }
+</style>
+
+
+<div>
+    <h4>Are you sure you want to delete this Project</h4>
+
+    <hr />
+
+</div>
+
+
+
+
+<div class="container">
+    <section class="mx-auto my-5" style="max-width: 43rem;">
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote blockquote-custom bg-white px-3 pt-4">
+                    <div class="blockquote-custom-icon bg-danger shadow-1-strong">
+                        <i class="fa fa-quote-left text-white"></i>
+                    </div>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.ProjectName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.ProjectName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                    </dl>
+                    <footer class=" pt-4 mt-4 border-top">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="ProjectId" />
+                            <input type="submit" value="Confirm Delete" class="btn btn-danger" id="deleteButton"/>
+                            <a asp-action="Index" class="text-warning" style="font-size:30px;padding-left:10px;"><i class="fa-solid fa-backward"></i></a>
+                        </form>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+
+    </section>
+</div>
+

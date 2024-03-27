@@ -1,0 +1,173 @@
+﻿@model IEnumerable<Employee_timesheet.Models.Task>
+@inject CompanyTimesheetContext dbContext;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Task Details</h3>
+
+
+<div>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert("@TempData["ErrorMessage"]");
+        </script>
+    }
+</div>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+
+*@
+
+
+
+<p>
+
+    <button onclick="redirectToCreateTimesheets()" type="button" class="btn btn-primary" style="background-color: #002d72;margin-left:10px;margin-top:10px">Add New</button>
+
+</p>
+
+
+
+
+
+<style>
+    html,
+    body,
+    .intro {
+        height: 100%;
+    }
+
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    thead th {
+        color: #fff;
+    }
+
+    .card {
+        border-radius: .5rem;
+    }
+
+    .table-scroll {
+        border-radius: .5rem;
+    }
+
+        .table-scroll table thead th {
+            font-size: 1.25rem;
+        }
+
+    thead {
+        top: 0;
+        position: sticky;
+    }
+</style>
+
+
+
+<section class="intro" style="margin-top:30px">
+    <div class="bg-image h-100">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px;">
+                                    <table class="table table-striped mb-0">
+                                        <thead style="background-color: #002d72;">
+                                            <tr>
+                                                <th>
+                                                    @*@Html.DisplayNameFor(model => model.TaskName)*@Task Name
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Project)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+
+                                            @foreach (var item in Model)
+                                            {
+                                                @if (item.TaskId != "TSK003" && item.TaskId != "TSK002" && item.TaskId != "TSK001")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TaskName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                                                        </td>
+                                                        <td>
+                                                            <a asp-action="Edit" asp-route-id="@item.TaskId" class="text-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                            <a asp-action="Details" asp-route-id="@item.TaskId" class="text-info" style="padding-left:5px"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
+                                                            <a asp-action="Delete" asp-route-id="@item.TaskId" class="text-danger" style="padding-left:5px"> <i class="fa-solid fa-trash "></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                               
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script>
+        function redirectToCreateTimesheets() {
+            window.location.href = '@Url.Action("Create","Tasks")'; // Replace "Timesheet" and "ControllerName" with your desired action and controller
+        }
+
+    </script>
+    }

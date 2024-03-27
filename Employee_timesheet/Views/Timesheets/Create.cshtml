@@ -1,0 +1,198 @@
+﻿@model Employee_timesheet.Models.Timesheet
+@inject CompanyTimesheetContext dbContext;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create New Timesheet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="timesheetForm" asp-action="Create"  method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <input asp-for="TimesheetId" class="form-control" type="hidden" value="TST000" />
+            </div>
+            <div class="form-group" style="padding-top:5px;">
+
+                <label asp-for="EmployeeId" class="control-label">Employee ID</label>
+                <input asp-for="EmployeeId" class="form-control" value="@User.Identity.Name" readonly />
+
+            </div>
+            <div class="form-group" style="padding-top:15px;">
+                <label asp-for="Type" class="control-label">Timesheet Type</label>
+               
+                <select id="dropdown" asp-for="Type" class="form-control" required>
+                    <option value="">Select an option</option>
+                    <option value="Half day">Half day</option>
+                    <option value="Full Day">Full Day</option>
+                    <option value="Leave">Leave</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top:15px;">
+                <label asp-for="TotalHoursWorked" class="control-label">Total Working Hours</label>
+                <input asp-for="TotalHoursWorked" class="form-control" type="text" id="inputField" placeholder="Hours" required readonly />
+                <span asp-validation-for="TotalHoursWorked" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group" style="padding-top:15px;" id="projectId1">
+                <label asp-for="ProjectId" class="control-label">Projects</label>
+              
+                <select asp-for="ProjectId" class="form-control" id="projectId"  required>
+                    @foreach (var task in ViewBag.Projects)
+                    {
+                        <option value="@task.ProjectId">@task.ProjectName</option>
+                    }
+                </select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="padding-top:15px;" id="taskId1">
+                <label asp-for="TaskId" class="control-label" id="taskLable">Tasks</label>
+                <select asp-for="TaskId" class="form-control" id="taskId" required disabled>
+                    <option value="" >-- Select Project --</option>
+                    
+                </select>
+                <span asp-validation-for="TaskId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="padding-top:15px;">
+                <label asp-for="Date" class="control-label">Date Time</label>
+                <input asp-for="Date" class="form-control" id="Datedd" required />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            
+          
+            <div class="form-group" style="padding-top:15px;">
+                <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #002d72;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="EmployeeIndex" style="font-size:30px" class="text-warning"><i class="fa-solid fa-backward"></i> </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            
+            $('#projectId').change(function () {
+                var projectId = $(this).val();
+
+                if (projectId === 'PRO000') {
+                    $('#taskLable').text('Leave Type');
+                }
+                else {
+                    $('#taskLable').text('Task');
+                }
+                //alert(projectId);
+                if (projectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetTasksByProjectId", "Timesheets")',
+                        type: 'GET',
+                        data: { projectId: projectId },
+                        success: function (data) {
+                            var tasksDropdown = $('#taskId');
+                            tasksDropdown.empty();
+                            tasksDropdown.append($('<option>').val('').text('-- Select Project --'));
+                            $.each(data, function (index, task) {
+                                tasksDropdown.append($('<option>').val(task.taskId).text(task.taskName));
+                            });
+                            tasksDropdown.prop('disabled', false);  
+                        }
+                        //     error: function () {
+                        //    var errorMessage = 'An error occurred while fetching tasks.';
+                        //    alert(errorMessage);
+                        //}         
+
+                    });
+                } else {
+                    $('#taskId').empty().prop('disabled', true);
+                }
+            });
+
+
+            $('#dropdown').on('change', function () {
+                var selectedOption = $(this).val();
+                var populatedValue = '';
+
+
+                if (selectedOption === 'Half day') {
+                    populatedValue = '4.0';
+                } else if (selectedOption === 'Full Day') {
+                    populatedValue = '8.0';
+                } else if (selectedOption === 'Leave') {
+                    populatedValue = '0.0';
+                }
+
+
+                $('#inputField').val(populatedValue);
+            });
+
+
+            $('#timesheetForm').submit(function () {
+                var formData = $(this).serialize();
+
+                var requiredFields = ['EmployeeId', 'Type', 'TotalHoursWorked', 'ProjectId', 'TaskId', 'Date'];
+                var missingFields = [];
+
+                for (var i = 0; i < requiredFields.length; i++) {
+                    var fieldName = requiredFields[i];
+                    var fieldValue = $('[name="' + fieldName + '"]').val();
+                    if (!fieldValue) {
+                        missingFields.push(fieldName);
+                    }
+                }
+
+                if (missingFields.length > 0) {
+                    alert('Please fill out the following required fields: ' + missingFields.join(', '));
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("Create", "Timesheets")',
+                    method: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        if (data && data.length > 0) {
+                            window.location.href = data;
+                        } else {
+                            console.error('Invalid URL received from the server.');
+                        }
+                    },
+                    error: function () {
+                        var errorMessage = 'An error occurred while submitting the timesheet.';
+                        alert(errorMessage);
+                    }
+
+                });
+            });
+
+        });
+
+
+    // library of the javascript
+
+    // Asynchronous JavaScript (AJAX) allows web pages to communicate with 
+    // servers without reloading the entire page.jQuery simplifies making AJAX requests and handling responses, 
+    // making web applications feel more dynamic and responsive.
+
+    //     Event handling:
+
+    // Attaching event listeners
+        // jQuery excels at selecting and modifying HTML elements on a web page.
+        // It offers easy - to - use methods for tasks like finding elements by ID, class
+
+
+
+    }
+
+

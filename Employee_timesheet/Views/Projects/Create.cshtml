@@ -1,0 +1,79 @@
+﻿@model Employee_timesheet.Models.Project
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Add New Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="projectForm" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="ProjectId" class="form-control" type="hidden" value="PRO000" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top:5px;">
+                <label asp-for="ProjectName" class="control-label">Project Name</label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top:15px;">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top:15px;">
+                <button id="createProjectBtn" class="btn btn-primary" style="background-color: #002d72;">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="font-size:30px" class="text-warning"><i class="fa-solid fa-backward"></i></a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+<script>
+    $(document).ready(function () {
+        $('#createProjectBtn').click(function (e) {
+            e.preventDefault();
+            alert("Creating timesheet")
+            var formData = $('#projectForm').serialize();
+
+            $.ajax({
+                url: '@Url.Action("Create", "Projects")',
+                method: 'POST',
+                data: formData,
+                    success: function (data) {
+                        if (data) {
+                            // Redirect to the specified URL
+                            window.location.href = data;
+                        } else {
+                            alert('An error occurred while creating the project.');
+                        }
+                    },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error('AJAX request failed:', errorThrown);
+
+                    var errorMessage = 'An error occurred while creating the project.';
+
+                    if (textStatus === 'timeout') {
+                        errorMessage = 'The request timed out. Please check your internet connection and try again.';
+                    } else if (xhr.status === 404) {
+                        errorMessage = 'The requested resource was not found. Please check the project selection and try again.';
+                    }
+                    alert(errorMessage);
+                }
+            });
+        });
+    });
+</script>
+}
